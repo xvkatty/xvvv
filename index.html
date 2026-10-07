@@ -47,9 +47,9 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(circle 
 @keyframes rv{from{opacity:0;transform:translate(calc(var(--dir,0)*26px),20px);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
 
 .intro{font-size:.68rem;letter-spacing:6px;text-transform:uppercase;color:var(--p);font-weight:600;margin-bottom:26px}
-.titulo{font-family:'Great Vibes',cursive;font-weight:400;font-size:clamp(5rem,21vw,8.5rem);line-height:1.25;margin:12px auto;padding:.2em .2em 0;width:fit-content;position:relative;color:transparent;-webkit-background-clip:text;background-clip:text;background-image:linear-gradient(105deg,#fff 40%,#ffdca8 50%,#fff 60%);background-size:260% 100%;background-position:150% 0}
-.tab.active .titulo{animation:rv 1.3s .25s var(--ex) both,shine 6s 1.8s ease-in-out infinite;filter:drop-shadow(0 4px 16px rgba(0,0,0,.35))}
-@keyframes shine{to{background-position:-150% 0}}
+.titulo{font-family:'Great Vibes',cursive;font-weight:400;font-size:clamp(5rem,21vw,8.5rem);line-height:1.25;margin:12px auto;padding:.2em .2em 0;width:fit-content;position:relative;color:#fff}
+.tab.active .titulo{animation:rv 1.3s .25s var(--ex) both, aura 4s 1.8s ease-in-out infinite alternate}
+@keyframes aura{from{text-shadow:0 0 8px rgba(255,255,255,.1),0 0 20px rgba(142,123,176,.2);filter:drop-shadow(0 4px 16px rgba(0,0,0,.35))}to{text-shadow:0 0 12px rgba(255,255,255,.3),0 0 28px rgba(142,123,176,.6);filter:drop-shadow(0 4px 16px rgba(0,0,0,.45))}}
 .tag{font:400 1.1rem 'Cinzel',serif;letter-spacing:8px;color:var(--ac);text-transform:uppercase}
 .fecha{margin:38px 0;padding:20px 0;position:relative;font:500 1.25rem 'Cinzel',serif;letter-spacing:4px;color:#fff}
 .fecha::before,.fecha::after{content:'';position:absolute;left:50%;width:44%;height:1px;translate:-50% 0;background:radial-gradient(circle,var(--gh),transparent 100%)}
@@ -159,10 +159,10 @@ body.iniciado .nav,body.iniciado #musica{opacity:1;translate:0 0}
     <section id="tab-lugar" class="tab" role="tabpanel" aria-labelledby="n1">
       <h2 class="stit rev" style="--i:0">Ubicación</h2>
       <div class="lista">
-        <div class="item rev" style="--i:2"><span class="ic"><svg class="i"><use href="#i-cross"/></svg></span><div><small>6:00 PM</small><h3>Misa</h3><p>Parroquia de Cristo Rey<br>Calle Embarcadero S/N, Bo. Xochitenco,<br>Chimalhuacán, Edo. de México</p></div></div>
-        <div class="item rev" style="--i:3"><span class="ic"><svg class="i"><use href="#i-glass"/></svg></span><div><small>Después de la misa</small><h3>Recepción</h3><p>Alfareros, 56363 Chimalhuacán,<br>Estado de México</p></div></div>
+        <div class="item rev" style="--i:2"><span class="ic"><svg class="i"><use href="#i-pin"/></svg></span><div><small>6:00 PM</small><h3>Misa</h3><p>Parroquia de Cristo Rey<br>Calle Embarcadero S/N, Bo. Xochitenco,<br>Chimalhuacán, Edo. de México</p></div></div>
+        <div class="item rev" style="--i:3"><span class="ic"><svg class="i"><use href="#i-pin"/></svg></span><div><small>Después de la misa</small><h3>Recepción</h3><p>Alfareros, 56363 Chimalhuacán,<br>Estado de México</p></div></div>
       </div>
-      <div class="rev mapas" style="--i:4"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Parroquia%20de%20Cristo%20Rey%2C%20Calle%20Embarcadero%2C%20Xochitenco%2C%20Chimalhuac%C3%A1n%2C%20Estado%20de%20M%C3%A9xico" target="_blank" rel="noopener"><svg class="i"><use href="#i-cross"/></svg>Mapa de la misa</a><a class="btn" href="https://maps.app.goo.gl/s2rzE77xYYpbT2mX7?g_st=aw" target="_blank" rel="noopener"><svg class="i"><use href="#i-glass"/></svg>Mapa de la recepción</a></div>
+      <div class="rev mapas" style="--i:4"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Parroquia%20de%20Cristo%20Rey%2C%20Calle%20Embarcadero%2C%20Xochitenco%2C%20Chimalhuac%C3%A1n%2C%20Estado%20de%20M%C3%A9xico" target="_blank" rel="noopener">Mapa de la misa</a><a class="btn" href="https://maps.app.goo.gl/s2rzE77xYYpbT2mX7?g_st=aw" target="_blank" rel="noopener">Mapa de la recepción</a></div>
     </section>
 
     <section id="tab-detalles" class="tab" role="tabpanel" aria-labelledby="n2">
@@ -265,20 +265,20 @@ let t=0;
     cx.globalAlpha=Math.max(p.l,0);cx.fillStyle=p.c;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.scale(1,Math.cos(p.r*2));cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);cx.restore()}
 })();
 
-/* Inclinación 3D sutil (Se removió la parte del destello de luz que seguía al mouse) */
+/* Inclinación 3D sutil */
 const card=$('#card');
 if(matchMedia('(hover:hover)').matches&&!rm)addEventListener('pointermove',e=>{
   card.style.setProperty('--rx',-(e.clientY/innerHeight-.5)*5+'deg');
   card.style.setProperty('--ry',(e.clientX/innerWidth-.5)*7+'deg');
 });
 
-/* Música (YouTube) con fade-in de volumen */
+/* Música (YouTube) con reproducción automática y fade-in de volumen */
 let yt,listo=false,suena=false,quiere=false,fade;
 const mus=$('#musica');
 const s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';document.head.appendChild(s);
 window.onYouTubeIframeAPIReady=()=>{yt=new YT.Player('player',{height:'10',width:'10',videoId:'HC87GGoWh4U',
   playerVars:{loop:1,playlist:'HC87GGoWh4U',controls:0,playsinline:1},
-  events:{onReady:()=>{listo=true;if(quiere)play()}}})};
+  events:{onReady:()=>{listo=true;play();}}})};
 function ui(on){suena=on;mus.classList.toggle('sonando',on);mus.setAttribute('aria-pressed',on);mus.setAttribute('aria-label',on?'Pausar música':'Activar música')}
 function play(){
   quiere=true;ui(true);if(!listo)return;
@@ -287,6 +287,13 @@ function play(){
 }
 function pausa(){quiere=false;ui(false);clearInterval(fade);if(listo)yt.pauseVideo()}
 mus.onclick=()=>suena?pausa():play();
+
+// Intento adicional de reproducción tras cualquier interacción por políticas del navegador
+['click', 'touchstart'].forEach(evt => {
+  window.addEventListener(evt, () => {
+    if(listo && quiere && yt.getPlayerState && yt.getPlayerState() !== 1) yt.playVideo();
+  }, { once: true });
+});
 </script>
 </body>
 </html>
