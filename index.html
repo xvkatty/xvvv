@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d0b14">
+<title>XV Años de Kati</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+@property --a{syntax:'<angle>';initial-value:0deg;inherits:false}
+@property --r{syntax:'<percentage>';initial-value:0%;inherits:false}
+:root{--p:#8e7bb0;--pd:#2a223f;--ac:#d1bfae;--tx:#fff;--mu:#a8a8b8;--gb:rgba(20,18,28,.62);--gl:rgba(255,255,255,.08);--gh:rgba(255,255,255,.14);--ex:cubic-bezier(.16,1,.3,1);--sp:cubic-bezier(.34,1.45,.64,1)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+body{font-family:'Montserrat',sans-serif;color:var(--mu);min-height:100vh;min-height:100dvh;display:flex;justify-content:center;align-items:center;padding:40px 20px 130px;overflow-x:hidden;background:#0d0b14}
+:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+svg.i{width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* Fondo: imágenes con Ken Burns + aurora */
+#bg{position:fixed;inset:0;z-index:-3;overflow:hidden;background:#0d0b14}
+.aur i{position:absolute;width:60vmax;height:60vmax;border-radius:50%;filter:blur(90px);opacity:.28;animation:drift 22s ease-in-out infinite alternate}
+.aur i:nth-child(1){background:#5b4a8a;left:-20vmax;top:-20vmax}
+.aur i:nth-child(2){background:#b79a7a;right:-25vmax;bottom:-25vmax;animation-delay:-8s;opacity:.18}
+.aur i:nth-child(3){background:#8e7bb0;left:30%;top:40%;width:40vmax;height:40vmax;animation-delay:-14s;opacity:.15}
+@keyframes drift{to{transform:translate(12vmax,8vmax) scale(1.2)}}
+.bgl{position:absolute;inset:0;background:center/cover;opacity:0;transition:opacity 1.6s ease;animation:kb 28s ease-in-out infinite alternate;will-change:opacity,transform}
+.bgl.on{opacity:.42}
+@keyframes kb{from{transform:scale(1.04)}to{transform:scale(1.16) translate(-1.5%,1%)}}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(circle at center,transparent 0%,rgba(13,11,20,.82) 100%);z-index:-1;pointer-events:none}
+#fx{position:fixed;inset:0;z-index:6000;pointer-events:none}
+
+/* Tarjeta */
+.card{position:relative;z-index:10;width:100%;max-width:520px;padding:60px 40px 46px;border-radius:32px;text-align:center;background:var(--gb);border:1px solid var(--gl);box-shadow:0 30px 60px rgba(0,0,0,.4);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .6s var(--ex);opacity:0;translate:0 50px;scale:.96; animation:cin 1.5s .15s var(--ex) forwards}
+@keyframes cin{to{opacity:1;translate:0 0;scale:1}}
+.card::before{content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;background:conic-gradient(from var(--a),transparent 0 62%,var(--ac) 82%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 9s linear infinite}
+@keyframes spin{to{--a:360deg}}
+.stage{position:relative;transition:height .7s var(--ex)}
+
+/* Pestañas */
+.tab{display:none}
+.tab.active{display:block}
+.tab.out{opacity:0;transform:translateX(var(--dx,0)) scale(.98);filter:blur(8px);transition:all .38s ease}
+.rev{opacity:0}
+.tab.active .rev{animation:rv 1s var(--ex) both;animation-delay:calc(var(--i)*85ms + 60ms)}
+@keyframes rv{from{opacity:0;transform:translate(calc(var(--dir,0)*26px),20px);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+
+.intro{font-size:.68rem;letter-spacing:6px;text-transform:uppercase;color:var(--p);font-weight:600;margin-bottom:26px}
+.titulo{font-family:'Great Vibes',cursive;font-weight:400;font-size:clamp(5rem,21vw,8.5rem);line-height:1.25;margin:12px auto;padding:.2em .2em 0;width:fit-content;position:relative;color:transparent;-webkit-background-clip:text;background-clip:text;background-image:linear-gradient(105deg,#fff 40%,#ffdca8 50%,#fff 60%);background-size:260% 100%;background-position:150% 0}
+.tab.active .titulo{animation:rv 1.3s .25s var(--ex) both,shine 6s 1.8s ease-in-out infinite;filter:drop-shadow(0 4px 16px rgba(0,0,0,.35))}
+@keyframes shine{to{background-position:-150% 0}}
+.tag{font:400 1.1rem 'Cinzel',serif;letter-spacing:8px;color:var(--ac);text-transform:uppercase}
+.fecha{margin:38px 0;padding:20px 0;position:relative;font:500 1.25rem 'Cinzel',serif;letter-spacing:4px;color:#fff}
+.fecha::before,.fecha::after{content:'';position:absolute;left:50%;width:44%;height:1px;translate:-50% 0;background:radial-gradient(circle,var(--gh),transparent 100%)}
+.fecha::before{top:0}.fecha::after{bottom:0}
+.clab{font-size:.64rem;letter-spacing:4px;text-transform:uppercase;color:var(--p);font-weight:600;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.caja{padding:16px 4px 14px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--gl);overflow:hidden;transition:transform .5s var(--ex),background .4s}
+.caja:hover{transform:translateY(-4px);background:rgba(255,255,255,.07)}
+.num{display:block;font:300 1.8rem 'Cinzel',serif;color:#fff;font-variant-numeric:tabular-nums}
+.num.tk{animation:tk .55s var(--ex)}
+@keyframes tk{from{transform:translateY(-55%);opacity:0;filter:blur(5px)}}
+.u{font-size:.55rem;letter-spacing:2px;text-transform:uppercase;font-weight:500;margin-top:8px}
+.fin{font:400 1.5rem 'Great Vibes',cursive;color:var(--ac)}
+
+.stit{font:400 clamp(2.4rem,10vw,3.2rem)/1.1 'Cinzel',serif;letter-spacing:2px;color:#fff;margin-bottom:6px}
+.lista{display:grid;gap:14px;margin:30px 0;text-align:left}
+.item{display:flex;gap:16px;align-items:flex-start;padding:18px;border-radius:20px;background:rgba(255,255,255,.03);border:1px solid var(--gl);transition:transform .5s var(--ex),border-color .4s,background .4s}
+.item:hover{transform:translateX(6px);border-color:rgba(209,191,174,.35);background:rgba(255,255,255,.055)}
+.ic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;flex:none;color:var(--ac);font-size:1.15rem;background:radial-gradient(circle at 30% 25%,rgba(142,123,176,.35),rgba(42,34,63,.6));box-shadow:inset 0 0 0 1px var(--gh)}
+.item h3{font:500 1.05rem 'Cinzel',serif;letter-spacing:1px;color:#fff;margin-bottom:4px}
+.item p{font-size:.88rem;line-height:1.75;font-weight:300}
+.item small{display:block;font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--p);font-weight:600;margin-bottom:3px}
+
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:10px;justify-content:center;margin:4px 4px 0;padding:17px 34px;border-radius:50px;font-size:.72rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:#fff;text-decoration:none;background:rgba(255,255,255,.05);border:1px solid var(--gh);transition:all .5s var(--ex)}
+.btn::before{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent,rgba(255,255,255,.22),transparent);transform:translateX(-110%);transition:transform .8s var(--ex)}
+.btn:hover{background:#fff;color:var(--pd);transform:translateY(-3px);box-shadow:0 16px 34px rgba(0,0,0,.3)}
+.btn:hover::before{transform:translateX(110%)}
+.btn:active{transform:scale(.96)}
+.mapas{display:grid;gap:12px;justify-items:center}.mapas .btn{margin:0;width:100%;max-width:310px;padding:17px 18px;letter-spacing:2px;font-size:.7rem}
+.btn.sec{padding:14px 26px;background:transparent;border-color:var(--gl);color:var(--mu)}
+.sig{margin-top:38px;font-size:.6rem;letter-spacing:4px;color:rgba(255,255,255,.22);text-transform:uppercase;font-weight:500}
+
+/* Navegación */
+.nav,#musica{opacity:0;translate:0 24px;transition:opacity .9s var(--ex) 1s,translate .9s var(--ex) 1s}
+body.iniciado .nav,body.iniciado #musica{opacity:1;translate:0 0}
+.nav{position:fixed;bottom:calc(28px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:calc(100% - 40px);max-width:400px;display:flex;padding:6px;border-radius:100px;z-index:1000;background:rgba(15,13,22,.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--gl);box-shadow:0 20px 40px rgba(0,0,0,.5)}
+.pill{position:absolute;top:6px;bottom:6px;left:6px;width:calc((100% - 12px)/3);border-radius:100px;background:linear-gradient(135deg,#3d3160,#2a223f);box-shadow:inset 0 0 0 1px var(--gh),0 6px 22px rgba(142,123,176,.35);transition:transform .75s var(--sp)}
+.ni{position:relative;z-index:1;flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:16px 6px;border-radius:100px;font-size:.68rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--mu);transition:color .4s}
+.ni.active{color:#fff}
+.ni:active svg{transform:scale(.8)}.ni svg{transition:transform .4s var(--sp)}
+@media(max-width:380px){.ni svg{display:none}.ni{letter-spacing:1px}}
+
+/* Música */
+#musica{position:fixed;top:calc(26px + env(safe-area-inset-top));right:26px;width:52px;height:52px;border-radius:50%;z-index:2000;display:grid;place-items:center;background:var(--gb);border:1px solid var(--gl);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(0,0,0,.3);color:#fff}
+#musica .pl{width:18px;height:18px;fill:currentColor;margin-left:2px}
+.eq{display:none;gap:2.5px;align-items:flex-end;height:16px}
+.eq i{width:3px;height:100%;background:currentColor;border-radius:2px;transform-origin:bottom;animation:eq 1s ease-in-out infinite}
+.eq i:nth-child(2){animation-delay:-.4s}.eq i:nth-child(3){animation-delay:-.75s}.eq i:nth-child(4){animation-delay:-.2s}
+@keyframes eq{0%,100%{transform:scaleY(.22)}50%{transform:scaleY(1)}}
+#musica.sonando{background:#fff;color:var(--pd);animation:glow 2.5s infinite}
+#musica.sonando .eq{display:flex}#musica.sonando .pl{display:none}
+@keyframes glow{from{box-shadow:0 0 0 0 rgba(255,255,255,.35)}to{box-shadow:0 0 0 18px transparent}}
+#musica:hover{transform:scale(1.08)}
+#yt{position:fixed;left:-20px;top:0;width:10px;height:10px;opacity:0;overflow:hidden;pointer-events:none}
+
+@media(min-width:768px){.card{padding:80px 60px 60px}.tag{font-size:1.3rem}.fecha{font-size:1.5rem}.num{font-size:2.4rem}.nav{bottom:40px}.ni{font-size:.74rem;padding:18px 10px}#musica{top:40px;right:40px;width:56px;height:56px}}
+@media(prefers-reduced-motion:reduce){*,::before,::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v10a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9ZM19 16v4M17 18h4"/></symbol>
+<symbol id="i-cross" viewBox="0 0 24 24"><path d="M12 2v20M6 8h12"/></symbol>
+<symbol id="i-glass" viewBox="0 0 24 24"><path d="M8 22h8M12 15v7M7 3h10l-1 7a4 4 0 0 1-8 0Z"/></symbol>
+<symbol id="i-shirt" viewBox="0 0 24 24"><path d="M20.4 5.6 16 3a4 4 0 0 1-8 0L3.6 5.6l1 5 2.4-.4V21h10V10.2l2.4.4Z"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4"/><path d="M12 8v13M19 12v8H5v-8M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+</svg>
+
+<canvas id="fx"></canvas>
+
+<div id="bg">
+  <div class="aur"><i></i><i></i><i></i></div>
+  <div class="bgl on" id="bg1" style="background-image:url('Fondo1.jpeg')"></div>
+  <div class="bgl" id="bg2"></div>
+</div>
+<div id="yt"><div id="player"></div></div>
+
+<button id="musica" aria-label="Activar música" aria-pressed="false">
+  <svg class="pl" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+  <span class="eq"><i></i><i></i><i></i><i></i></span>
+</button>
+
+<main class="card" id="card">
+  <div class="stage" id="stage">
+
+    <section id="tab-inicio" class="tab active" role="tabpanel" aria-labelledby="n0">
+      <p class="intro rev" style="--i:0">Quiero que seas parte de mi historia</p>
+      <h1 class="titulo rev" style="--i:2">Katty</h1>
+      <p class="tag rev" style="--i:3">Mis XV Años</p>
+      <p class="fecha rev" style="--i:4">Sábado • 26 De Diciembre</p>
+      <article id="cont" class="rev" style="--i:5">
+        <p class="clab">El gran día comienza en</p>
+        <div class="grid">
+          <div class="caja"><span class="num" id="d">00</span><div class="u">Días</div></div>
+          <div class="caja"><span class="num" id="h">00</span><div class="u">Horas</div></div>
+          <div class="caja"><span class="num" id="m">00</span><div class="u">Min</div></div>
+          <div class="caja"><span class="num" id="s">00</span><div class="u">Seg</div></div>
+        </div>
+      </article>
+      <div class="rev" style="--i:6;margin-top:26px"><button class="btn sec" id="cal"><svg class="i"><use href="#i-cal"/></svg>Guardar en mi calendario</button></div>
+    </section>
+
+    <section id="tab-lugar" class="tab" role="tabpanel" aria-labelledby="n1">
+      <h2 class="stit rev" style="--i:0">Ubicación</h2>
+      <div class="lista">
+        <div class="item rev" style="--i:2"><span class="ic"><svg class="i"><use href="#i-cross"/></svg></span><div><small>6:00 PM</small><h3>Misa</h3><p>Parroquia de Cristo Rey<br>Calle Embarcadero S/N, Bo. Xochitenco,<br>Chimalhuacán, Edo. de México</p></div></div>
+        <div class="item rev" style="--i:3"><span class="ic"><svg class="i"><use href="#i-glass"/></svg></span><div><small>Después de la misa</small><h3>Recepción</h3><p>Alfareros, 56363 Chimalhuacán,<br>Estado de México</p></div></div>
+      </div>
+      <div class="rev mapas" style="--i:4"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Parroquia%20de%20Cristo%20Rey%2C%20Calle%20Embarcadero%2C%20Xochitenco%2C%20Chimalhuac%C3%A1n%2C%20Estado%20de%20M%C3%A9xico" target="_blank" rel="noopener"><svg class="i"><use href="#i-cross"/></svg>Mapa de la misa</a><a class="btn" href="https://maps.app.goo.gl/s2rzE77xYYpbT2mX7?g_st=aw" target="_blank" rel="noopener"><svg class="i"><use href="#i-glass"/></svg>Mapa de la recepción</a></div>
+    </section>
+
+    <section id="tab-detalles" class="tab" role="tabpanel" aria-labelledby="n2">
+      <h2 class="stit rev" style="--i:0">Detalles</h2>
+      <div class="lista">
+        <div class="item rev" style="--i:2"><span class="ic"><svg class="i"><use href="#i-shirt"/></svg></span><div><h3>Código de vestimenta</h3><p>No morado / lila</p></div></div>
+        <div class="item rev" style="--i:3"><span class="ic"><svg class="i"><use href="#i-gift"/></svg></span><div><h3>Sugerencia de regalo</h3><p>Lluvia de sobres.</p></div></div>
+        <div class="item rev" style="--i:4"><span class="ic"><svg class="i"><use href="#i-heart"/></svg></span><div><h3>Nota especial</h3><p>Tu asistencia y tu sonrisa es lo más valioso e importante para mí en esta mágica velada.</p></div></div>
+      </div>
+    </section>
+
+  </div>
+  <div class="sig">// Kitty //</div>
+</main>
+
+<nav class="nav" role="tablist" aria-label="Secciones">
+  <span class="pill" id="pill"></span>
+  <button class="ni active" id="n0" role="tab" aria-selected="true" aria-controls="tab-inicio"><svg class="i"><use href="#i-home"/></svg>Inicio</button>
+  <button class="ni" id="n1" role="tab" aria-selected="false" aria-controls="tab-lugar" tabindex="-1"><svg class="i"><use href="#i-pin"/></svg>Lugar</button>
+  <button class="ni" id="n2" role="tab" aria-selected="false" aria-controls="tab-detalles" tabindex="-1"><svg class="i"><use href="#i-star"/></svg>Detalles</button>
+</nav>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const tabs=$$('.tab'),btns=$$('.ni'),stage=$('#stage'),pill=$('#pill'),bgs=[$('#bg1'),$('#bg2')];
+const fondos=['Fondo1.jpeg','Fondo2.jpeg','Fondo3.jpeg'];
+let act=0,busy=false,bgi=0;
+
+// Marcar como iniciado al cargar para mostrar elementos flotantes
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.add('iniciado');
+  confeti();
+});
+
+/* Cambio de pestaña: dirección, altura animada, fondo y pastilla */
+function ir(i){
+  if(i===act||busy||i<0||i>2)return; busy=true;
+  const dir=i>act?1:-1,o=tabs[act],n=tabs[i],h0=stage.offsetHeight;
+  btns.forEach((b,k)=>{b.classList.toggle('active',k===i);b.setAttribute('aria-selected',k===i);b.tabIndex=k===i?0:-1});
+  pill.style.transform=`translateX(${i*100}%)`;
+  bgi^=1; bgs[bgi].style.backgroundImage=`url('${fondos[i]}')`; bgs[bgi].classList.add('on'); bgs[bgi^1].classList.remove('on');
+  stage.style.setProperty('--dir',dir); stage.style.height=h0+'px';
+  o.style.setProperty('--dx',-dir*34+'px'); o.classList.add('out');
+  setTimeout(()=>{
+    o.classList.remove('active','out'); n.classList.add('active'); act=i;
+    stage.style.height=n.offsetHeight+'px';
+    setTimeout(()=>{stage.style.height='';busy=false},720);
+  },380);
+}
+btns.forEach((b,k)=>b.onclick=()=>ir(k));
+$('.nav').addEventListener('keydown',e=>{
+  const d={ArrowRight:1,ArrowLeft:-1}[e.key]; if(!d)return;
+  const k=Math.min(2,Math.max(0,act+d)); ir(k); setTimeout(()=>btns[k].focus(),50);
+});
+let tx=0,ty=0;
+addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;
+  if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.6)ir(act+(dx<0?1:-1));
+},{passive:true});
+
+/* Contador con animación por dígito */
+const meta=new Date(2026,11,26,18,0,0).getTime(),pad=n=>String(n).padStart(2,'0');
+const els={d:$('#d'),h:$('#h'),m:$('#m'),s:$('#s')};
+function set(k,v){const e=els[k];if(e.textContent!==v){e.textContent=v;e.classList.remove('tk');void e.offsetWidth;e.classList.add('tk')}}
+const cuenta=setInterval(tick,1000);tick();
+function tick(){
+  const t=meta-Date.now();
+  if(t<0){clearInterval(cuenta);$('#cont').innerHTML="<p class='fin'>¡Llegó el gran momento!</p>";confeti();return}
+  set('d',pad(Math.floor(t/864e5)));set('h',pad(Math.floor(t%864e5/36e5)));
+  set('m',pad(Math.floor(t%36e5/6e4)));set('s',pad(Math.floor(t%6e4/1e3)));
+}
+
+/* Agregar al calendario (.ics) */
+$('#cal').onclick=()=>{
+  const ics=['BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT','UID:xv-kati@invitacion','DTSTAMP:20260101T000000Z','DTSTART:20261226T180000','DTEND:20261227T020000','SUMMARY:XV Años de Kati','LOCATION:Parroquia de Cristo Rey\\, Chimalhuacán','DESCRIPTION:Misa 6:00 PM y recepción. No morado / lila.','END:VEVENT','END:VCALENDAR'].join('\r\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='XV-Kati.ics';a.click();
+};
+
+/* Partículas y confeti */
+const cv=$('#fx'),cx=cv.getContext('2d');let W,H,dust=[],conf=[];
+function rs(){const d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0)}
+addEventListener('resize',rs);rs();
+const col=['#d1bfae','#f3e6d3','#8e7bb0','#ffffff','#c9a96e'];
+for(let i=0;!rm&&i<42;i++)dust.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.7+.4,v:Math.random()*.25+.08,p:Math.random()*6.3});
+function confeti(){
+  if(rm)return;
+  for(let i=0;i<120;i++){const a=-Math.PI/2+(Math.random()-.5)*1.7,s=Math.random()*13+7;
+    conf.push({x:W/2,y:H*.6,vx:Math.cos(a)*s,vy:Math.sin(a)*s,w:Math.random()*7+4,h:Math.random()*4+3,r:Math.random()*6,vr:(Math.random()-.5)*.4,c:col[i%5],l:1})}
+}
+let t=0;
+(function loop(){
+  requestAnimationFrame(loop); if(document.hidden)return; t+=.016; cx.clearRect(0,0,W,H);
+  cx.shadowBlur=8;cx.shadowColor='#d1bfae';cx.fillStyle='#ecdcc8';
+  for(const d of dust){d.y-=d.v;if(d.y<-5){d.y=H+5;d.x=Math.random()*W}
+    cx.globalAlpha=.12+.45*Math.abs(Math.sin(t+d.p));cx.beginPath();cx.arc(d.x+Math.sin(t*.5+d.p)*12,d.y,d.r,0,6.3);cx.fill()}
+  cx.shadowBlur=0; conf=conf.filter(p=>p.l>0);
+  for(const p of conf){p.vx*=.985;p.vy=p.vy*.985+.28;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.l-=.008;
+    cx.globalAlpha=Math.max(p.l,0);cx.fillStyle=p.c;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.scale(1,Math.cos(p.r*2));cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);cx.restore()}
+})();
+
+/* Inclinación 3D sutil (Se removió la parte del destello de luz que seguía al mouse) */
+const card=$('#card');
+if(matchMedia('(hover:hover)').matches&&!rm)addEventListener('pointermove',e=>{
+  card.style.setProperty('--rx',-(e.clientY/innerHeight-.5)*5+'deg');
+  card.style.setProperty('--ry',(e.clientX/innerWidth-.5)*7+'deg');
+});
+
+/* Música (YouTube) con fade-in de volumen */
+let yt,listo=false,suena=false,quiere=false,fade;
+const mus=$('#musica');
+const s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';document.head.appendChild(s);
+window.onYouTubeIframeAPIReady=()=>{yt=new YT.Player('player',{height:'10',width:'10',videoId:'HC87GGoWh4U',
+  playerVars:{loop:1,playlist:'HC87GGoWh4U',controls:0,playsinline:1},
+  events:{onReady:()=>{listo=true;if(quiere)play()}}})};
+function ui(on){suena=on;mus.classList.toggle('sonando',on);mus.setAttribute('aria-pressed',on);mus.setAttribute('aria-label',on?'Pausar música':'Activar música')}
+function play(){
+  quiere=true;ui(true);if(!listo)return;
+  yt.setVolume(0);yt.playVideo();let v=0;clearInterval(fade);
+  fade=setInterval(()=>{v+=4;yt.setVolume(Math.min(v,80));if(v>=80)clearInterval(fade)},80);
+}
+function pausa(){quiere=false;ui(false);clearInterval(fade);if(listo)yt.pauseVideo()}
+mus.onclick=()=>suena?pausa():play();
+</script>
+</body>
+</html>
